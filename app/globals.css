@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --rainbow: #f4f, #66f, #0af;
+}
+
 .max-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -11,7 +15,7 @@
     padding-right: 1.5em;
 }
 .bgontext {
-    background: linear-gradient(to right, #f4f, #66f, #0af);
+    background: linear-gradient(to right, var(--rainbow));
     background-clip: text;
     color: transparent;
 }
