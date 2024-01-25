@@ -2,16 +2,17 @@
 import { useState, useEffect } from 'react'
 import { getMovies, getMoviesByName } from "../service/getMovies"
 import { Button } from '@/components/ui/button'
+import useDebounce from '../hooks/useDebounce'
 
 const Movies = () => {
     const [page, setPage] = useState(1)
     const [movies, setMovies] = useState([])
 
     const [nameSearch, setNameSearch] = useState("")
-    
+    const debouncedNameSearch = useDebounce(nameSearch, 500)
+
     useEffect(() => {
-        // movies = getMovies(page)
-        if(nameSearch !== "") {
+        if(nameSearch !== "" && !nameSearch.startsWith(" ")) {
             getMoviesByName(page, nameSearch)
             .then(data => setMovies(data.results))
         }
@@ -19,19 +20,12 @@ const Movies = () => {
             getMovies(page)
                 .then(data => setMovies(data.results))
         }
-    }, [page, nameSearch])
-
-    // useEffect(() => {
-    //     if(nameSearch !== "") {
-    //         getMoviesByName(page, nameSearch)
-    //         .then(data => setMovies(data.results))
-    //     }
-    // },[nameSearch])
+    }, [page, debouncedNameSearch])
 
     return (
         <article>
             <section className="flex flex-col items-center py-14 min-padding-x text-center">
-                <h1 className='text-8xl my-6 font-bold'>Explore The Most Popular <span className="bgontext">Movies</span></h1>
+                <h1 className='text-8xl my-6 font-bold'>Explore The Most Popular <span className="text-gradient">Movies</span></h1>
                 <p className="text-xl">If you are interesed by a movie just click on it and you will have more information 🤯.</p>
             </section>
             
