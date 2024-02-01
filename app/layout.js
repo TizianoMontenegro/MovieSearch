@@ -12,8 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <header className='w-full bg-black text-white'>
+      <body className={`${inter.className} bg-background text-text`}>
+        <header className='w-full bg-black text-white undershadowline'>
           <nav className='max-container h-12 px-4 flex gap-8 items-center'>
             <span>MovieLOGO</span>
             

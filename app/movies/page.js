@@ -1,8 +1,9 @@
 "use client"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { getMovies, getMoviesByName } from "../service/getMovies"
 import { Button } from '@/components/ui/button'
 import useDebounce from '../hooks/useDebounce'
+import Link from 'next/link'
 
 const Movies = () => {
     const [page, setPage] = useState(1)
@@ -30,7 +31,7 @@ const Movies = () => {
             </section>
             
             <section className="flex justify-center gap-4 min-padding-x my-8">
-                <input type="search" value={nameSearch} onChange={e => setNameSearch(e.target.value)} placeholder='Fast and Furiuos, Spider Man, ...' className="w-full h-10 border pl-3" />
+                <input type="search" value={nameSearch} onChange={e => setNameSearch(e.target.value)} placeholder='Fast and Furiuos, Spider Man, ...' className="w-full h-10 border pl-3 bg-background outline-none rounded-sm focus:border-color3" />
             </section>
             
             <section>
@@ -40,9 +41,9 @@ const Movies = () => {
                         ? 
                         movies.map(movie => (
                         <li key={movie.id}>
-                            <div className='rounded shadow-md flex justify-between items-center relative overflow-hidden'>
-                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                            </div>
+                            <Link href={`/movies/id/${movie.id}`} className='rounded shadow-md flex justify-between items-center relative overflow-hidden'>
+                                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                            </Link>
                         </li>
                     ))
                         : null}
@@ -50,9 +51,9 @@ const Movies = () => {
             </section>
             
             <section className="flex justify-center items-center gap-4 my-8">
-                <Button variant="outline" onClick={()=>setPage(page - 1)} disabled={page === 1}>Previous Page</Button>
-                <p>{movies.length} Movies on page {page}</p>
-                <Button variant="outline"  onClick={()=>setPage(page + 1)}>Next Page</Button>
+                <Button variant="outline" onClick={()=>setPage(page - 1)} disabled={page === 1}>⏪</Button>
+                <p>Page {page}</p>
+                <Button variant="outline"  onClick={()=>setPage(page + 1)}>⏩</Button>
             </section>
         </article>
     )

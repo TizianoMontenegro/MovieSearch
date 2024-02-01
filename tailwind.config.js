@@ -18,6 +18,8 @@ module.exports = {
     },
     extend: {
       colors: {
+        text: "#fff",
+        background: "#0f0f0f",
         color1: "#f4f",
         color2: "#66f",
         color3: "#0af",

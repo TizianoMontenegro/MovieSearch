@@ -8,11 +8,34 @@
     }
 }
 
+:root {
+    --color1: #f4f;
+    --color2: #66f;
+    --color3: #0af;
+}
+
 .max-container {
     max-width: 1200px;
+    margin: 0 auto;
+}
+.max-small-container {
+    max-width: 800px;
     margin: 0 auto;
 }
 .min-padding-x {
     padding-left: 1.5em;
     padding-right: 1.5em;
+}
+.undershadowline {
+    position: relative;
+}
+.undershadowline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    /* background-image: linear-gradient(to right, white, transparent 90%); */
+    background-image: linear-gradient(to right, var(--color1), var(--color2), var(--color3), transparent 90%);
 }

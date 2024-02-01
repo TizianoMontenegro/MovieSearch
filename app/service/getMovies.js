@@ -18,3 +18,9 @@ export const getMoviesByName = async (page = 1, name = "") => {
     console.log(res)
     return res
 }
+export const getMovieById = async (id) => {
+    const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${API_KEY}`)
+    const res = await data.json()
+    console.log(res)
+    return res
+}
