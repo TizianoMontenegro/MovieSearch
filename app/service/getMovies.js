@@ -8,19 +8,19 @@ export const getMoviesInfo = async (page = 1) => {
   
 export const getMovies = async (page = 1) => {
     const data = await getMoviesInfo(page)
-    console.log(data)
+    //console.log(data)
     return data
 }
 
 export const getMoviesByName = async (page = 1, name = "") => {
     const data = await fetch(`${SEARCH_COLLECTION_MOVIES_URL}?query=${name}&page=${page}&api_key=${API_KEY}`)
     const res = await data.json()
-    console.log(res)
+    //console.log(res)
     return res
 }
 export const getMovieById = async (id) => {
     const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${API_KEY}`)
     const res = await data.json()
-    console.log(res)
+    //console.log(res)
     return res
 }
